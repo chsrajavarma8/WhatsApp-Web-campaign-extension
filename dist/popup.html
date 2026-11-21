@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Campaign Sender</title>
+  <link rel="stylesheet" href="ui/base.css">
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="ui/theme-neu.css">
+</head>
+<body class="popup">
+  <header class="popup-header">
+    <img src="icons/icon32.png" alt="" width="28" height="28">
+    <div class="popup-title">
+      <strong>Campaign Sender</strong>
+      <span id="wa-line" class="wa-line"><span class="dot dot-unknown"></span>Checking WhatsApp…</span>
+    </div>
+  </header>
+
+  <main id="popup-body" class="popup-body"></main>
+
+  <footer class="popup-footer">
+    <button class="btn btn-primary btn-block" id="open-dashboard">Open Dashboard</button>
+    <p class="muted tiny">Only message people who agreed to hear from you. Data stays in your browser.</p>
+  </footer>
+  <div id="toasts" class="toasts"></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

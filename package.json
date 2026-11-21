@@ -1,0 +1,12 @@
+{
+  "name": "wa-campaign-sender",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Chrome MV3 extension: personalized messages from CSV via WhatsApp Web (dev tooling only; the extension needs no build step).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/",
+    "icons": "node scripts/generate-icons.mjs",
+    "build": "node --test tests/ && node scripts/build.mjs"
+  }
+}

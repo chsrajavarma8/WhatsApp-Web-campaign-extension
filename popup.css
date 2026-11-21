@@ -1,0 +1,30 @@
+/* Popup: fixed width, compact. Shared components live in ui/base.css. */
+body.popup { width: 360px; min-height: 420px; background: var(--bg); display: flex; flex-direction: column; }
+.popup-header { display: flex; gap: 10px; align-items: center; padding: 12px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.popup-header img { border-radius: 8px; }
+.popup-title strong { display: block; font-size: 14px; }
+.wa-line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.popup-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.popup-footer { padding: 10px 14px 12px; border-top: 1px solid var(--border); background: var(--surface); text-align: center; }
+.popup-footer p { margin: 8px 0 0; }
+.campaign-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.campaign-head strong { min-width: 0; }
+.mini-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mini-stat { --tone: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 4px 7px; text-align: center; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.mini-stat::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--tone); }
+.mini-stat strong { display: block; font-size: 19px; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.mini-stat span { font-size: 11px; color: var(--muted); }
+.mini-success { --tone: var(--success); }
+.mini-info { --tone: var(--info); }
+.mini-danger { --tone: var(--danger); }
+.mini-muted { --tone: var(--muted); }
+.current-line { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 0; padding: 9px 11px; background: var(--info-soft); color: var(--info); border-radius: var(--radius-sm); }
+.current-wait { background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.current-wait .grow { display: flex; flex-direction: column; min-width: 0; }
+.popup-countdown { font-size: 22px; font-weight: 800; color: var(--info); font-variant-numeric: tabular-nums; line-height: 1.15; }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; animation: blink 1.2s ease-in-out infinite; }
+.controls-popup { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.controls-popup .btn:only-child { grid-column: 1 / -1; }
+.popup-links { justify-content: center; }
+.popup .modal { max-width: 340px; }
+.popup .modal-body { font-size: 13px; }

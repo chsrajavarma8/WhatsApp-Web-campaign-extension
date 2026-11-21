@@ -1,0 +1,189 @@
+/*
+ * Neumorphism (soft UI) theme. Loaded after base.css and the page stylesheet.
+ * Rules: surfaces share the background colour, no hard borders, depth comes
+ * from a light (top-left) + dark (bottom-right) shadow pair. Raised = outer
+ * shadows, pressed/recessed = the same pair inset.
+ */
+:root {
+  --neu-bg: #e7ecf2;
+  --neu-light: #ffffff;
+  --neu-dark: #c3cad6;
+  --neu-out: 7px 7px 16px var(--neu-dark), -7px -7px 16px var(--neu-light);
+  --neu-out-sm: 4px 4px 9px var(--neu-dark), -4px -4px 9px var(--neu-light);
+  --neu-out-hover: 10px 10px 22px var(--neu-dark), -10px -10px 22px var(--neu-light);
+  --neu-in: inset 4px 4px 9px var(--neu-dark), inset -4px -4px 9px var(--neu-light);
+  --neu-in-sm: inset 2px 2px 5px var(--neu-dark), inset -2px -2px 5px var(--neu-light);
+
+  --bg: var(--neu-bg);
+  --surface: var(--neu-bg);
+  --surface-2: var(--neu-bg);
+  --border: #d3dae4;
+  --border-strong: #c3cad6;
+  --neutral-soft: #dde3ea;
+  --primary: #0d8a7d;
+  --primary-hover: #0b7569;
+  --primary-soft: #d3ece8;
+  --ring-track: var(--neu-bg);
+  --shadow: var(--neu-out);
+  --shadow-hover: var(--neu-out-hover);
+  --shadow-lg: 14px 14px 34px var(--neu-dark), -14px -14px 34px var(--neu-light);
+  --radius: 22px;
+  --radius-sm: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --neu-bg: #232a36;
+    --neu-light: #2d3646;
+    --neu-dark: #181d26;
+    --border: #2c3444;
+    --border-strong: #353f51;
+    --neutral-soft: #283040;
+    --primary: #2dd4bf;
+    --primary-hover: #5eead4;
+    --primary-soft: #1f3b3d;
+    --success-soft: #1d3a2b;
+    --info-soft: #1e2f4d;
+    --warning-soft: #3d3220;
+    --danger-soft: #42252a;
+    --violet-soft: #312a4d;
+  }
+}
+
+body { background: var(--neu-bg); }
+
+/* ---------- raised surfaces ---------- */
+.card, .stat, .mini-stat, .modal, .wa-status, .template-card, .empty-state, .current-wait {
+  border: 0 !important;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-out);
+}
+.card-flat { box-shadow: var(--neu-out-sm); }
+.stat::after, .mini-stat::after { left: 18px; right: 18px; bottom: 8px; height: 3px; border-radius: 3px; }
+.stat:hover { box-shadow: var(--neu-out-hover); }
+
+/* ---------- layout chrome ---------- */
+.sidebar, .popup-header, .popup-footer { background: var(--neu-bg); border: 0 !important; }
+.sidebar { box-shadow: 6px 0 18px -8px var(--neu-dark); }
+.popup-header { box-shadow: 0 6px 14px -8px var(--neu-dark); }
+.popup-footer { box-shadow: 0 -6px 14px -8px var(--neu-dark); }
+.brand img, .popup-header img { box-shadow: var(--neu-out-sm); }
+
+.nav { gap: 6px; }
+.nav-item { border-radius: var(--radius-sm); }
+.nav-item:hover { background: transparent; box-shadow: var(--neu-out-sm); }
+.nav-item.active { background: transparent; box-shadow: var(--neu-in-sm); }
+
+/* ---------- icon tiles ---------- */
+.card-icon, .stat-icon {
+  background: var(--neu-bg);
+  box-shadow: var(--neu-out-sm);
+}
+.card-icon { color: var(--primary); border-radius: 12px; }
+.stat-icon { color: var(--tone); }
+
+/* ---------- buttons ---------- */
+.btn {
+  border: 0 !important;
+  border-radius: 12px;
+  background: var(--neu-bg);
+  color: var(--text);
+  box-shadow: var(--neu-out-sm);
+  transition: box-shadow .15s, color .15s, transform .1s;
+}
+.btn:not(:disabled):hover { background: var(--neu-bg); box-shadow: var(--neu-out); }
+.btn:not(:disabled):active { box-shadow: var(--neu-in-sm); transform: none; }
+.btn:disabled { box-shadow: var(--neu-in-sm); opacity: .55; }
+.btn-primary, .btn-primary:not(:disabled):hover {
+  background: linear-gradient(145deg, #12a594, #0b7a6e);
+  color: #fff;
+  box-shadow: var(--neu-out-sm);
+}
+.btn-primary:not(:disabled):hover { box-shadow: var(--neu-out); }
+.btn-primary:not(:disabled):active { box-shadow: inset 3px 3px 7px rgba(0, 0, 0, .25), inset -2px -2px 6px rgba(255, 255, 255, .15); }
+@media (prefers-color-scheme: dark) {
+  .btn-primary, .btn-primary:not(:disabled):hover { background: linear-gradient(145deg, #34e0c9, #1fae9c); color: #06302b; }
+}
+.btn-secondary, .btn-ghost { color: var(--text-2); }
+.btn-ghost { box-shadow: none; background: transparent; }
+.btn-ghost:not(:disabled):hover { box-shadow: var(--neu-out-sm); }
+.btn-warning, .btn-warning:not(:disabled):hover { color: var(--warning); }
+.btn-danger-outline, .btn-danger-outline:not(:disabled):hover { color: var(--danger); background: var(--neu-bg); }
+.btn-danger, .btn-danger:not(:disabled):hover { background: linear-gradient(145deg, #e0484a, #b91c1c); color: #fff; }
+.icon-btn:hover, .link-btn:hover { background: transparent; }
+
+/* ---------- inputs (recessed) ---------- */
+.input, .hero-name:focus, .pace-custom-row .input {
+  border: 0 !important;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-in-sm);
+  border-radius: 12px;
+}
+.input:focus { outline: none; box-shadow: var(--neu-in-sm), 0 0 0 2px var(--primary); }
+.input:disabled, .input[readonly] { background: var(--neu-bg); opacity: .75; }
+.hero-name:hover:not(:disabled) { border-color: transparent; box-shadow: var(--neu-in-sm); }
+.check-row input, input[type=checkbox] { accent-color: var(--primary); }
+
+/* ---------- pills, chips, badges ---------- */
+.pill, .chip, .pace-chip, .file-pill { border: 0 !important; box-shadow: var(--neu-out-sm); background: var(--neu-bg); }
+.pace-chip:hover { box-shadow: var(--neu-out); }
+.pace-chip:active, .chip:not(:disabled):active { box-shadow: var(--neu-in-sm); }
+.pill-running { color: var(--info); }
+.pill-paused { color: var(--violet); }
+.pill-completed { color: var(--success); }
+.pill-stopped { color: var(--danger); }
+.chip-placeholder { color: var(--primary); }
+.badge { box-shadow: var(--neu-in-sm); }
+
+/* ---------- pace tiles ---------- */
+.pace-tile { border: 0; background: var(--neu-bg); box-shadow: var(--neu-out-sm); border-radius: var(--radius-sm); }
+.pace-tile:hover { box-shadow: var(--neu-out); transform: none; }
+.pace-tile.active { background: var(--neu-bg); box-shadow: var(--neu-in); }
+.pace-custom { border: 0 !important; box-shadow: var(--neu-in-sm); background: var(--neu-bg); }
+.pace-custom.active { background: var(--neu-bg); box-shadow: var(--neu-in), 0 0 0 2px var(--primary); }
+.pace-summary-row > span { border: 0; background: var(--neu-bg); box-shadow: var(--neu-out-sm); }
+
+/* ---------- progress & ring ---------- */
+.progress { background: var(--neu-bg); box-shadow: var(--neu-in-sm); height: 14px; padding: 3px; }
+.progress-bar, .seg { border-radius: 999px; }
+.progress-seg { gap: 3px; }
+.ring { border-radius: 50%; box-shadow: var(--neu-out); background: var(--neu-bg); }
+.ring::after { content: ""; position: absolute; inset: 22px; border-radius: 50%; box-shadow: var(--neu-in-sm); pointer-events: none; }
+.ring-track { stroke: transparent; }
+.ring-arc { stroke-width: 8; filter: drop-shadow(0 0 3px color-mix(in srgb, currentColor 30%, transparent)); }
+.ring svg { padding: 6px; }
+
+/* ---------- recessed lists & panels ---------- */
+.checklist li, .current-contact, .empty-inline, .confirm-fact, .dropzone {
+  border: 0 !important;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-in-sm);
+}
+.checklist li.done .check-icon { box-shadow: var(--neu-out-sm); }
+.check-icon { border: 0; box-shadow: var(--neu-in-sm); }
+.avatar { box-shadow: var(--neu-out-sm); }
+.dropzone:hover, .dropzone.dragover { background: var(--neu-bg); box-shadow: var(--neu-in), 0 0 0 2px var(--primary); }
+.activity li { border-left-width: 0; box-shadow: inset 3px 0 0 var(--border-strong); padding-left: 12px; }
+.activity-success { box-shadow: inset 3px 0 0 #22c55e; }
+.activity-error { box-shadow: inset 3px 0 0 #ef4444; }
+.activity-warn { box-shadow: inset 3px 0 0 #f59e0b; }
+
+/* ---------- tables ---------- */
+.table-wrap { border: 0; border-radius: var(--radius-sm); box-shadow: var(--neu-in-sm); padding: 4px; }
+.table th { background: var(--neu-bg); }
+.table tbody tr:hover { background: color-mix(in srgb, var(--neu-dark) 18%, transparent); }
+
+/* ---------- notices & toasts ---------- */
+.notice { border: 0; box-shadow: var(--neu-out-sm); border-radius: var(--radius-sm); }
+.notice-warning { background: color-mix(in srgb, var(--warning-soft) 65%, var(--neu-bg)); }
+.notice-error { background: color-mix(in srgb, var(--danger-soft) 65%, var(--neu-bg)); }
+.notice-info { background: color-mix(in srgb, var(--info-soft) 65%, var(--neu-bg)); }
+.notice-success { background: color-mix(in srgb, var(--success-soft) 65%, var(--neu-bg)); }
+.toast { box-shadow: var(--neu-out); border-radius: 14px; }
+.modal-overlay { background: color-mix(in srgb, var(--neu-bg) 60%, transparent); }
+
+/* ---------- hero ---------- */
+.hero { background: var(--neu-bg); }
+.phone-frame { box-shadow: var(--neu-in); }
+.mini-stat { padding-bottom: 14px; }
+.mini-stat::after { left: 28%; right: 28%; bottom: 6px; }
